@@ -1,0 +1,50 @@
+{
+  "ResponseCode": 200,
+  "ResponseMessage": "Success",
+  "Data": [
+    {
+      "SessionDate": "2025-03-22T00:00:00",
+      "GovernrateName": "القاهرة",
+      "GovernrateID": 1,
+      "PilgrimID": 31,
+      "PilgrimName": "ناديه فرج ابراهيم محمد",
+      "PilgrimNID": "26103270103008",
+      "PilgrimPassport": "A33054717",
+      "Gender": "أنثى",
+      "GenderID": 2,
+      "Age": 63,
+      "HajTypeDesc": "حج القرعة",
+      "HajTypeID": 1,
+      "Division": 1,
+      "DivisionDesc": "مكة",
+      "RoomNo": 5,
+      "ViruseCID": 1,
+      "ViruseCDesc": "مصاب بفيرس سى",
+      "HospitalID": 1,
+      "HospitalDesc": "مستشفى الملك عبد العزيز",
+      "Notes": "fdfsdf"
+    },
+    {
+      "SessionDate": "2025-03-29T00:00:00",
+      "GovernrateName": "القاهرة",
+      "GovernrateID": 1,
+      "PilgrimID": 31,
+      "PilgrimName": "ناديه فرج ابراهيم محمد",
+      "PilgrimNID": "26103270103008",
+      "PilgrimPassport": "A33054717",
+      "Gender": "أنثى",
+      "GenderID": 2,
+      "Age": 63,
+      "HajTypeDesc": "حج القرعة",
+      "HajTypeID": 1,
+      "Division": 1,
+      "DivisionDesc": "مكة",
+      "RoomNo": 5,
+      "ViruseCID": 1,
+      "ViruseCDesc": "مصاب بفيرس سى",
+      "HospitalID": 2,
+      "HospitalDesc": "مستشفى حراء العام",
+      "Notes": "testttttttttt"
+    }
+  ]
+}
