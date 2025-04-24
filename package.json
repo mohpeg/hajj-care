@@ -1,0 +1,46 @@
+{
+  "name": "hajj-care",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "jest",
+    "start:dev": "nodemon src/main.js",
+    "migrate:generate": "npx sequelize-cli migration:generate --name",
+    "migrate:up": "npx sequelize-cli db:migrate",
+    "migrate:down": "npx sequelize-cli db:migrate:undo"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mohpeg/hajj-care.git"
+  },
+  "keywords": [
+    "mohp",
+    "egypt",
+    "hajj"
+  ],
+  "author": "mahmoud13989",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mohpeg/hajj-care/issues"
+  },
+  "homepage": "https://github.com/mohpeg/hajj-care#readme",
+  "dependencies": {
+    "bcryptjs": "^3.0.2",
+    "compression": "^1.8.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "helmet": "^8.1.0",
+    "joi": "^17.13.3",
+    "jsonwebtoken": "^9.0.2",
+    "morgan": "^1.10.0",
+    "response-time": "^2.3.3",
+    "sequelize": "^6.37.7",
+    "tedious": "^18.6.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.9",
+    "sequelize-cli": "^6.6.2"
+  }
+}
