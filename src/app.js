@@ -6,6 +6,7 @@ const compression = require('compression');
 const responseTime = require('response-time');
 const tokenRouter = require('./user-account/');
 const onboardingRouter = require('./onboarding');
+const profileRouter = require('./profile');
 
 const app = express();
 
@@ -20,10 +21,16 @@ app.use(responseTime());
 
 app.use(tokenRouter);
 app.use(onboardingRouter);
+app.use(profileRouter)
 
 app.use((err, req, res, next) => {
   console.error(err.stack);
-  res.status(err.statusCode || 500).json({ error: err.message });
+  res.status(err.statusCode || 500).json({
+    status: 'error',
+    name: err.name || 'InternalServerError',
+    message: err.message || 'Something went wrong',
+    statusCode: err.statusCode || 500,
+  });
 });
-
+  
 module.exports = app;
