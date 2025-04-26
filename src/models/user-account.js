@@ -56,6 +56,29 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: true,
         unique: true,
       },
+      emergencyMobileNumber: {
+        type: DataTypes.STRING(20),
+        allowNull: true,
+        unique: false,
+      },
+      passportImage: {
+        type: DataTypes.STRING,
+        allowNull: true,
+      },
+
+      dateOfBirth: {
+        type: DataTypes.DATEONLY,
+        allowNull: true,
+      },
+      hotelName: {
+        type: DataTypes.STRING,
+        allowNull: true,
+      },
+      roomNumber: {
+        type: DataTypes.STRING,
+        allowNull: true,
+      },
+
       createdAt: {
         type: DataTypes.DATE,
         allowNull: true,
@@ -77,7 +100,7 @@ module.exports = (sequelize, DataTypes) => {
       targetKey: 'hajjId',
       as: 'pilgrim',
     });
-  };;
+  };
 
   return UserAccount;
 };
