@@ -61,6 +61,27 @@ module.exports = {
         allowNull: true,
         unique: false,
       },
+      emergencyMobileNumber: {
+        type: Sequelize.STRING(20),
+        allowNull: true,
+        unique: false,
+      },
+      passportImage: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
+      dateOfBirth: {
+        type: Sequelize.DATEONLY,
+        allowNull: true,
+      },
+      hotelName: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
+      roomNumber: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
@@ -108,6 +129,16 @@ module.exports = {
         },
       },
     });
+    await queryInterface.addIndex('user_accounts', ['emergencyMobileNumber'], {
+      unique: true,
+      where: {
+        emergencyMobileNumber: {
+          [Sequelize.Op.ne]: null,
+        },
+      },
+    }); 
+    
+
   },
 
   async down(queryInterface) {
