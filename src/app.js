@@ -4,6 +4,13 @@ const cors = require('cors');
 const morgan = require('morgan');
 const compression = require('compression');
 const responseTime = require('response-time');
+
+const swaggerUi = require('swagger-ui-express');
+const swaggerJsdoc = require('swagger-jsdoc');
+const swaggerOptions = require('./src/docs/swaggerOptions');
+
+const specs = swaggerJsdoc(swaggerOptions);
+
 const tokenRouter = require('./user-account/');
 const onboardingRouter = require('./onboarding');
 const profileRouter = require('./profile');
@@ -18,10 +25,11 @@ app.use(cors());
 app.use(morgan('dev'));
 app.use(compression());
 app.use(responseTime());
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
 
 app.use(tokenRouter);
 app.use(onboardingRouter);
-app.use(profileRouter)
+app.use(profileRouter);
 
 app.use((err, req, res, next) => {
   console.error(err.stack);
@@ -32,5 +40,5 @@ app.use((err, req, res, next) => {
     statusCode: err.statusCode || 500,
   });
 });
-  
+
 module.exports = app;
