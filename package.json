@@ -39,6 +39,8 @@
     "redis": "^4.7.0",
     "response-time": "^2.3.3",
     "sequelize": "^6.37.7",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.1",
     "tedious": "^18.6.1"
   },
   "devDependencies": {
