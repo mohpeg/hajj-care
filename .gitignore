@@ -147,3 +147,8 @@ compose.yml
 
 # services
 services
+
+
+# hajj-care-api-docs
+hajj-care-api-docs
+.DS_Store
