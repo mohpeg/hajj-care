@@ -7,7 +7,7 @@ const responseTime = require('response-time');
 
 const swaggerUi = require('swagger-ui-express');
 const swaggerJsdoc = require('swagger-jsdoc');
-const swaggerOptions = require('./src/docs/swaggerOptions');
+const swaggerOptions = require('./docs/swaggerOptions');
 
 const specs = swaggerJsdoc(swaggerOptions);
 
