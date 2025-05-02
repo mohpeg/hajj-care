@@ -1,8 +1,10 @@
 const { Router } = require('express');
 const requireAuth = require('../middlewares/require-auth.middleware');
+const requireRoles = require('../middlewares/require-role');
 
 const onboardingController = require('./controllers/onboarding.controller');
 const handleAsync = require('../lib/handle-async');
+const { ROLES } = require('../constants/roles');
 
 const router = Router();
 
@@ -72,7 +74,7 @@ const router = Router();
 router.post(
   '/v1/onboarding/health-conditions',
   requireAuth,
-  // requireRoles(['pilgrim']),
+  requireRoles([ROLES.ADMIN, ROLES.PILGRIM]),
   handleAsync(onboardingController.addHealthConditions)
 );
 
@@ -124,7 +126,7 @@ router.post(
 router.post(
   '/v1/onboarding/medical-procedures',
   requireAuth,
-  // requireRoles(['pilgrim']),
+  requireRoles([ROLES.ADMIN, ROLES.PILGRIM]),
   handleAsync(onboardingController.addMedicalProcedures)
 );
 
@@ -162,7 +164,7 @@ router.post(
 router.post(
   '/v1/onboarding/allergy',
   requireAuth,
-  // requireRoles(['pilgrim']),
+  requireRoles([ROLES.ADMIN, ROLES.PILGRIM]),
   handleAsync(onboardingController.addAllergy)
 );
 
@@ -186,6 +188,29 @@ router.get(
   '/v1/onboarding',
   requireAuth,
   handleAsync(onboardingController.getOnboardingData)
+);
+
+/**
+ * @swagger
+ * /v1/onboarding/list:
+ *   get:
+ *     summary: Retrieve a list of all onboarding data
+ *     tags: [Onboarding]
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       200:
+ *         description: Successfully retrieved list of onboarding data
+ *       401:
+ *         description: Unauthorized (missing or invalid token)
+ *       403:
+ *         description: Forbidden (insufficient permissions)
+ */
+router.get(
+  '/v1/onboarding/list',
+  requireAuth,
+  requireRoles([ROLES.ADMIN]),
+  handleAsync(onboardingController.getAllOnboardingData)
 );
 // TODO:
 /**
