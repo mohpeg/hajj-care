@@ -26,6 +26,7 @@
   },
   "homepage": "https://github.com/mohpeg/hajj-care#readme",
   "dependencies": {
+    "@faker-js/faker": "^9.7.0",
     "bcryptjs": "^3.0.2",
     "compression": "^1.8.0",
     "cors": "^2.8.5",
@@ -44,6 +45,7 @@
     "tedious": "^18.6.1"
   },
   "devDependencies": {
+    "@types/faker": "^6.6.8",
     "nodemon": "^3.1.9",
     "sequelize-cli": "^6.6.2"
   }
