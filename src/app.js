@@ -14,6 +14,7 @@ const specs = swaggerJsdoc(swaggerOptions);
 const tokenRouter = require('./user-account/');
 const onboardingRouter = require('./onboarding');
 const profileRouter = require('./profile');
+const statisticsRouter = require('./statistics');
 
 const app = express();
 
@@ -30,6 +31,7 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
 app.use(tokenRouter);
 app.use(onboardingRouter);
 app.use(profileRouter);
+app.use(statisticsRouter);
 
 app.use((err, req, res, next) => {
   console.error(err.stack);
