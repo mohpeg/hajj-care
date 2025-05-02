@@ -68,8 +68,19 @@ async function updatePilgrimContactInfo(req, res) {
   });
 }
 
+async function getAllPilgrimProfiles(req, res) {
+  const { pageIndex, pageSize, order } = req.query;
+  const result = await pilgrimProfileServices.getPaginatedData(
+    pageIndex,
+    pageSize,
+    order
+  );
+  res.status(200).json(result);
+}
+
 module.exports = {
   getPilgrimProfile,
   addPilgrimContactInfo,
   updatePilgrimContactInfo,
+  getAllPilgrimProfiles
 };
