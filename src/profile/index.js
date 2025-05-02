@@ -1,6 +1,8 @@
 const { Router } = require('express');
 const router = Router();
 const requireAuth = require('../middlewares/require-auth.middleware.js');
+const requireRoles = require('../middlewares/require-role.js');
+const { ROLES } = require('../constants/roles.js');
 const handleAsync = require('../lib/handle-async.js');
 const upload = require('../lib/multer.js');
 
@@ -8,6 +10,7 @@ const {
   getPilgrimProfile,
   addPilgrimContactInfo,
   updatePilgrimContactInfo,
+  getAllPilgrimProfiles,
 } = require('./controllers/profileController.js');
 
 /**
@@ -113,6 +116,30 @@ router.patch(
 
   upload.single('passportImage'),
   handleAsync(updatePilgrimContactInfo)
+);
+
+/**
+ * @swagger
+ * /v1/pilgrim/profile/list:
+ *   get:
+ *     summary: Retrieve a list of all pilgrim profiles
+ *     tags: [Profile]
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       200:
+ *         description: Successfully retrieved list of pilgrim profiles
+ *       401:
+ *         description: Unauthorized (missing or invalid token)
+ *       403:
+ *         description: Forbidden (insufficient permissions)
+ */
+
+router.get(
+  '/v1/pilgrim/profile/list',
+  requireAuth,
+  requireRoles([ROLES.ADMIN]),
+  handleAsync(getAllPilgrimProfiles)
 );
 
 module.exports = router;
