@@ -100,7 +100,13 @@ module.exports = (sequelize, DataTypes) => {
       targetKey: 'hajjId',
       as: 'pilgrim',
     });
+    UserAccount.hasOne(models.MedicalRecord, {
+      foreignKey: 'hajjId',
+      sourceKey: 'hajjId',
+      as: 'medicalRecords',
+    });
   };
+
 
   return UserAccount;
 };
