@@ -1,7 +1,7 @@
 const { ValidationException, NotFoundException } = require('../../exceptions');
 const db = require('../../models');
 const Joi = require('joi');
-
+const {DEFUALT_PAGE_INDEX ,DEFAULT_PAGE_SIZE,DEFAULT_SORT_DIRECTION} = require('../../constants/pagination.js');
 const healthConditionsAuthSchema = Joi.object({
   has_hypertension: Joi.boolean().optional(),
   has_diabetes: Joi.boolean().optional(),
@@ -157,9 +157,27 @@ async function getOnboardingData(hajjId) {
   }
   return existingRecord;
 }
+
+async function getPaginatedData(pageIndex = DEFUALT_PAGE_INDEX, pageSize = DEFAULT_PAGE_SIZE, order = DEFAULT_SORT_DIRECTION) {
+  const offset = (pageIndex - 1) * pageSize;
+  const { count, rows } = await db.MedicalRecord.findAndCountAll({
+    limit: pageSize,
+    offset,
+    order: [['createdAt', order]],
+  });
+  return {
+    currentPage: pageIndex,
+    totalPages: Math.ceil(count / pageSize),
+    totalRecords: count,
+    data: rows,
+  };
+}
+
+
 module.exports = {
   addHealthConditions,
   addMedicalProcedures,
   addAllergy,
   getOnboardingData,
+  getPaginatedData,
 };
