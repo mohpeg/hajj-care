@@ -142,8 +142,7 @@ dist
 # seeders files
 seeders
 
-# docker
-compose.yml
+
 
 # services
 services
