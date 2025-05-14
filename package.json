@@ -9,7 +9,8 @@
     "start:dev": "nodemon src/main.js",
     "migrate:generate": "npx sequelize-cli migration:generate --name",
     "migrate:up": "npx sequelize-cli db:migrate",
-    "migrate:down": "npx sequelize-cli db:migrate:undo"
+    "migrate:down": "npx sequelize-cli db:migrate:undo",
+    "build:docker": "sh -c 'docker build --platform=linux/amd64 -t mahmoud13989/hajj-care:$VERSION -f Dockerfile .' && docker push mahmoud13989/hajj-care:$VERSION"
   },
   "repository": {
     "type": "git",

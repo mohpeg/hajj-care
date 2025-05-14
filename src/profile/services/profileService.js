@@ -76,9 +76,9 @@ async function getPaginatedData(
   pageSize = DEFAULT_PAGE_SIZE,
   order = DEFAULT_SORT_DIRECTION
 ) {
-  const offset = (pageIndex - 1) * pageSize;
+  const offset = (parseInt(pageIndex) - 1) * parseInt(pageSize);
   const { count, rows } = await db.UserAccount.findAndCountAll({
-    limit: pageSize,
+    limit: parseInt(pageSize),
     offset,
     order: [["createdAt", order]],
     include: [
