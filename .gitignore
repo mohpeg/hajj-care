@@ -143,11 +143,10 @@ dist
 seeders
 
 
-
-# services
-services
-
-
 # hajj-care-api-docs
 hajj-care-api-docs
 .DS_Store
+# Backup files
+*.bak
+*.tmp
+hajjcare.bacpac
