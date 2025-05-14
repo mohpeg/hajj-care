@@ -1,5 +1,3 @@
-version: '3.9'
-
 services:
   mssql:
     image: mcr.microsoft.com/mssql/server:2022-latest
@@ -11,6 +9,7 @@ services:
       - ACCEPT_EULA=Y
       - MSSQL_SA_PASSWORD=P@ssw0rd
       - DEBUG=1
+      - MSSQL_ENABLE_HARDENED_ENDPOINTS=0
     volumes:
       - mssql_data:/var/opt/mssql
     restart: unless-stopped
@@ -21,6 +20,33 @@ services:
     ports:
       - "6379:6379"
     restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
+  # hajj-care-api:
+  #   image: mahmoud13989/hajj-care:0.0.2
+  #   container_name: hajj_care_api
+  #   ports:
+  #     - "3000:3000"
+  #   environment:
+  #     - NODE_ENV=production
+  #     - PORT=3000
+  #     - JWT_SECRET=hajj_care_MOHP_local-mahmoud
+  #     - REDIS_URL=redis://redis_server:6379
+  #     - DB_HOST=mssql_server
+  #     - DB_PORT=1433
+  #     - DB_USERNAME=sa
+  #     - DB_PASSWORD=P@ssw0rd
+  #     - DB_NAME=hajjcare
+  #   depends_on:
+  #     mssql:
+  #       condition: service_started
+  #     redis:
+  #       condition: service_healthy
+  #   restart: unless-stopped
 
 volumes:
   mssql_data:
