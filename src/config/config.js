@@ -2,11 +2,11 @@ require('dotenv').config();
 
 module.exports = {
   development: {
-    username: 'sa',
-    password: 'P@ssw0rd',
-    database: 'hajjcare',
-    host: '127.0.0.1',
-    port: 1433,
+    username: process.env.DB_USERNAME,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME,
+    host: process.env.DB_HOST,
+    port: process.env.DB_PORT,
     dialect: 'mssql',
     logging: console.log,
     benchmark: true,
@@ -18,12 +18,11 @@ module.exports = {
     },
   },
   production: {
-    // زي ما تحب، إما نفس الفكرة أو البيانات تفصيلية
-    username: 'sa',
-    password: 'P@ssw0rd',
-    database: 'hajjcare_prod',
-    host: '127.0.0.1',
-    port: 1433,
+    username: process.env.DB_USERNAME,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME,
+    host: process.env.DB_HOST,
+    port: process.env.DB_PORT,
     dialect: 'mssql',
     dialectOptions: {
       options: {
