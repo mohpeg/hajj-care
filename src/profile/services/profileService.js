@@ -93,7 +93,8 @@ async function getPaginatedData(
   const data = rows.map((row) => {
     return {
       ...setPilgrimDTO(row.toJSON()),
-      medicalRecords: row.medicalRecords.toJSON(),
+      medicalRecords:
+        row.medicalRecords != null ? row.medicalRecords.toJSON() : null,
     };
   });
   return {
